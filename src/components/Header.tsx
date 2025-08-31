@@ -33,7 +33,12 @@ const Header = () => {
         </nav>
 
         {/* Contact Button */}
-        <Button variant="outline-header" size="sm" className="font-medium">
+        <Button 
+          variant="outline-header" 
+          size="sm" 
+          className="font-medium"
+          onClick={() => window.open('https://wa.me/917356176072?text=Hi%2C%20I%27m%20interested%20in%20your%20services', '_blank')}
+        >
           Contact Now
         </Button>
       </div>

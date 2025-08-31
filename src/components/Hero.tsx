@@ -35,7 +35,12 @@ const Hero = () => {
 
           {/* CTA Button */}
           <div className="pt-4">
-            <Button variant="contact" size="lg" className="text-lg px-8 py-4">
+            <Button 
+              variant="contact" 
+              size="lg" 
+              className="text-lg px-8 py-4"
+              onClick={() => window.open('https://wa.me/917356176072?text=Hi%2C%20I%27m%20interested%20in%20your%20services', '_blank')}
+            >
               Contact Us
             </Button>
           </div>
