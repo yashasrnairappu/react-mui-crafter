@@ -16,7 +16,7 @@ const Hero = () => {
             {/* Malayalam Text */}
             <h1 className="text-2xl md:text-3xl lg:text-3xl font-bold leading-tight">
               <span className="text-foreground block mb-2">
-                ഹുദ്ധാകോർഡുക്കൾ വഴി
+                ഫൂഡ്കോർട്ടുകൾ വഴി
               </span>
               <span className="text-lightback block mb-2">
                 പരസ്യം ചെയ്യൂ
@@ -29,7 +29,7 @@ const Hero = () => {
 
           {/* English Description */}
           <p className="text-lg text-foreground/80 max-w-lg leading-relaxed">
-            Built for marketers and founders, Pixel Post gets your brand seen 
+            Built for marketers and founders, Adbite gets your brand seen 
             indoors, where it matters most.
           </p>
 

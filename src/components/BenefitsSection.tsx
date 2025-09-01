@@ -21,7 +21,7 @@ const BenefitsSection = () => {
     {
       title: "Digital സ്ക്രീനുകൾ",
       description: "നിങ്ങളുടെ ഓഫറുകളും പ്രൊമോഷനുകളും ഏറ്റവും മികച്ച ദൃശ്യഭംഗിയോടെ ഞങ്ങളുടെ Digital സ്ക്രീനുകളിൽ പ്രദർശിപ്പിക്കാൻ സാധിക്കും.",
-      image: fourKScreenImage
+      image: businessGrowthImage
     },
     {
       title: "പരസ്യച്ചിലവ്",
