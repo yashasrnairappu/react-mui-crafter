@@ -8,95 +8,93 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 203 40% 96%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 100%;                /* white */
+    --foreground: 359 86% 48%;           /* red */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;                      /* white */
+    --card-foreground: 359 86% 48%;         /* red */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;                   /* white */
+    --popover-foreground: 359 86% 48%;      /* red */
 
-    --primary: 45 94% 51%;
-    --primary-foreground: 222.2 84% 4.9%;
+    --primary: 359 86% 48%;                 /* red */
+    --primary-foreground: 0 0% 100%;        /* white */
 
-    --secondary: 207 89% 54%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 100%;                 /* white */
+    --secondary-foreground: 359 86% 48%;    /* red */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 100%;                     /* white */
+    --muted-foreground: 359 86% 48%;        /* red */
 
-    --accent: 45 94% 51%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --accent: 359 86% 48%;                  /* red */
+    --accent-foreground: 0 0% 100%;         /* white */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 359 86% 48%;             /* red */
+    --destructive-foreground: 0 0% 100%;    /* white */
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 45 94% 51%;
+    --border: 359 86% 48%;                  /* red */
+    --input: 359 86% 48%;                   /* red */
+    --ring: 359 86% 48%;                    /* red */
 
     --radius: 0.75rem;
-    
+
     /* Custom design tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(203 40% 96%), hsl(207 30% 92%));
-    --gradient-primary: linear-gradient(135deg, hsl(45 94% 51%), hsl(45 94% 45%));
-    --shadow-card: 0 4px 20px hsl(207 20% 50% / 0.1);
-    --shadow-button: 0 2px 8px hsl(45 94% 51% / 0.3);
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%), hsl(359 86% 48% / 0.07));
+    --gradient-primary: linear-gradient(135deg, hsl(359 86% 48%), hsl(359 86% 40%));
+    --shadow-card: 0 4px 20px hsl(359 86% 48% / 0.07);
+    --shadow-button: 0 2px 8px hsl(359 86% 48% / 0.15);
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 0 0% 100%;        /* white */
+    --sidebar-foreground: 359 86% 48%;      /* red */
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 359 86% 48%;         /* red */
+    --sidebar-primary-foreground: 0 0% 100%;/* white */
 
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-accent: 0 0% 100%;            /* white */
+    --sidebar-accent-foreground: 359 86% 48%; /* red */
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-border: 359 86% 48%;          /* red */
 
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 359 86% 48%;            /* red */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* You can use a reversed scheme, or stick to same for simplicity */
+    --background: 359 86% 48%;                 /* red */
+    --foreground: 0 0% 100%;                   /* white */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 359 86% 48%;                       /* red */
+    --card-foreground: 0 0% 100%;              /* white */
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 359 86% 48%;                    /* red */
+    --popover-foreground: 0 0% 100%;           /* white */
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 0 0% 100%;                      /* white */
+    --primary-foreground: 359 86% 48%;         /* red */
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 359 86% 48%;                  /* red */
+    --secondary-foreground: 0 0% 100%;         /* white */
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 359 86% 48%;                      /* red */
+    --muted-foreground: 0 0% 100%;             /* white */
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 100%;                       /* white */
+    --accent-foreground: 359 86% 48%;          /* red */
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 0% 100%;                  /* white */
+    --destructive-foreground: 359 86% 48%;     /* red */
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 0 0% 100%;                       /* white */
+    --input: 0 0% 100%;                        /* white */
+    --ring: 0 0% 100%;                         /* white */
+    --sidebar-background: 359 86% 48%;         /* red */
+    --sidebar-foreground: 0 0% 100%;           /* white */
+    --sidebar-primary: 0 0% 100%;              /* white */
+    --sidebar-primary-foreground: 359 86% 48%; /* red */
+    --sidebar-accent: 359 86% 48%;             /* red */
+    --sidebar-accent-foreground: 0 0% 100%;    /* white */
+    --sidebar-border: 0 0% 100%;               /* white */
+    --sidebar-ring: 0 0% 100%;                 /* white */
   }
 }
 

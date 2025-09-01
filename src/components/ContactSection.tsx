@@ -20,7 +20,7 @@ const ContactSection = () => {
     e.preventDefault();
     // Create WhatsApp message
     const message = `Hi, I'm interested in your services.%0A%0AName: ${formData.firstName}%0AEmail: ${formData.email}%0AMobile: ${formData.mobile}%0AComments: ${formData.comments}`;
-    const whatsappUrl = `https://wa.me/917356176072?text=${message}`;
+    const whatsappUrl = `https://wa.me/916282359567?text=${message}`;
     window.open(whatsappUrl, '_blank');
     
     toast({
@@ -58,7 +58,7 @@ const ContactSection = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Address</h3>
                     <p className="text-foreground/70">
-                      Hilite Business Park, Poovangal, Kozhikode
+                      Near Mallappally Thiruvalla Road Market, Mallappally,Kerala 689585
                     </p>
                   </div>
                 </div>
@@ -71,7 +71,7 @@ const ContactSection = () => {
                   <Phone className="w-6 h-6 text-primary mt-1" />
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Phone</h3>
-                    <p className="text-foreground/70">+91 73561 76072</p>
+                    <p className="text-foreground/70">+91 6282359567</p>
                   </div>
                 </div>
               </CardContent>
@@ -81,7 +81,7 @@ const ContactSection = () => {
               <Button 
                 size="lg" 
                 className="w-full md:w-auto"
-                onClick={() => window.open('https://wa.me/917356176072?text=Hi%2C%20I%27m%20interested%20in%20your%20services', '_blank')}
+                onClick={() => window.open('https://wa.me/916282359567?text=Hi%2C%20I%27m%20interested%20in%20your%20services', '_blank')}
               >
                 <Phone className="w-4 h-4 mr-2" />
                 Contact via WhatsApp

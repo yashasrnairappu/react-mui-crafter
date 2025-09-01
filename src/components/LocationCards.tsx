@@ -4,19 +4,19 @@ import { Card, CardContent } from "@/components/ui/card";
 const LocationCards = () => {
   const locations = [
     {
-      name: "Calicut",
-      slug: "calicut",
-      description: "Experience premium indoor advertising in Calicut's busiest food courts"
+      name: "Pathanamthitta",
+      slug: "Pathanamthitta",
+      description: "Experience premium indoor advertising in Pathanamthitta's busiest food courts"
     },
     {
-      name: "Ernakulam", 
-      slug: "ernakulam",
-      description: "Reach your target audience in Ernakulam's commercial hubs"
+      name: "Kottayam", 
+      slug: "Kottayam",
+      description: "Reach your target audience in Kottayam's commercial hubs"
     },
     {
-      name: "Trivandrum",
-      slug: "trivandrum", 
-      description: "Connect with customers in Trivandrum's popular dining destinations"
+      name: "Alappuzha",
+      slug: "Alappuzha", 
+      description: "Connect with customers in Alappuzha's popular dining destinations"
     }
   ];
 
@@ -25,10 +25,10 @@ const LocationCards = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            PixelPost Locations
+            Adbite Locations
           </h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Choose your preferred location to start your indoor advertising campaign
+            Choose your preferred location to start your advertising campaign
           </p>
         </div>
 
@@ -46,7 +46,7 @@ const LocationCards = () => {
                   variant="outline" 
                   className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                 >
-                  Explore {location.name}
+                  Coming Soon...
                 </Button>
               </CardContent>
             </Card>

@@ -1,10 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
-import businessGrowthImage from "@/assets/business-growth.png";
-import visitorsImage from "@/assets/visitors.png";
-import fourKScreenImage from "@/assets/4k-screen.png";
-import costSavingsImage from "@/assets/cost-savings.png";
-import displayFlexibilityImage from "@/assets/display-flexibility.png";
-import designSupportImage from "@/assets/design-support.png";
+import businessGrowthImage from "@/assets/3.png";
+import visitorsImage from "@/assets/2.png";
+import fourKScreenImage from "@/assets/1.png";
+import costSavingsImage from "@/assets/display.png";
+import displayFlexibilityImage from "@/assets/store.png";
+import designSupportImage from "@/assets/cake.png";
 
 const BenefitsSection = () => {
   const benefits = [
@@ -19,8 +19,8 @@ const BenefitsSection = () => {
       image: visitorsImage
     },
     {
-      title: "4K TV സ്ക്രീനുകൾ",
-      description: "നിങ്ങളുടെ ഓഫറുകളും പ്രൊമോഷനുകളും ഏറ്റവും മികച്ച ദൃശ്യഭംഗിയോടെ ഞങ്ങളുടെ 4K സ്ക്രീനുകളിൽ പ്രദർശിപ്പിക്കാൻ സാധിക്കും.",
+      title: "Digital സ്ക്രീനുകൾ",
+      description: "നിങ്ങളുടെ ഓഫറുകളും പ്രൊമോഷനുകളും ഏറ്റവും മികച്ച ദൃശ്യഭംഗിയോടെ ഞങ്ങളുടെ Digital സ്ക്രീനുകളിൽ പ്രദർശിപ്പിക്കാൻ സാധിക്കും.",
       image: fourKScreenImage
     },
     {
@@ -43,7 +43,7 @@ const BenefitsSection = () => {
   return (
     <section className="py-20 px-6 bg-background">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-align mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             ഫൂഡ്കോർട്ടുകൾ വഴി പരസ്യം ചെയ്താലുള്ള ഗുണങ്ങൾ
           </h2>
@@ -58,13 +58,13 @@ const BenefitsSection = () => {
                   <img 
                     src={benefit.image} 
                     alt={benefit.title}
-                    className="w-20 h-20 object-contain"
+                    className="w- h- object-contain"
                   />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
                   {benefit.title}
                 </h3>
-                <p className="text-foreground/70 leading-relaxed text-justify">
+                <p className="text-foreground/70 leading-relaxed ">
                   {benefit.description}
                 </p>
               </CardContent>

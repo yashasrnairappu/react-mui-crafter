@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import logoP from "@/assets/logo-p.png";
+import logoP from "@/assets/adbitelogo.jpeg";
 
 const Header = () => {
-  const navItems = ["Callicut", "Ernakulum", "Trivandrum"];
+  const navItems = ["Pathanamthitta", "Kottayam", "Alappuzha"];
 
   return (
     <header className="w-full px-6 py-4 bg-background/80 backdrop-blur-sm border-b border-border/20">
@@ -11,11 +11,11 @@ const Header = () => {
         <div className="flex items-center gap-3">
           <img 
             src={logoP} 
-            alt="PixelPost Logo" 
-            className="w-12 h-12 animate-float"
+            alt="Adbite Logo" 
+            className="w-12 h-12 "
           />
           <span className="text-xl font-bold text-foreground hidden sm:block">
-            PixelPost
+            Adbite
           </span>
         </div>
 
@@ -37,7 +37,7 @@ const Header = () => {
           variant="outline-header" 
           size="sm" 
           className="font-medium"
-          onClick={() => window.open('https://wa.me/917356176072?text=Hi%2C%20I%27m%20interested%20in%20your%20services', '_blank')}
+          onClick={() => window.open('https://wa.me/6282359567?text=Hi%2C%20I%27m%20interested%20in%20your%20services', '_blank')}
         >
           Contact Now
         </Button>
