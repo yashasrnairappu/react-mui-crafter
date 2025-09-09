@@ -25,7 +25,7 @@ const App = () => (
           <Route path="/locations/Pathanamthitta/new-jhons" element={<PathanamthittaNewJhons />}/>
           <Route path="/locations/Pathanamthitta/aramana-resturant" element={<PathanamthittaAraman />}/>
           <Route path="/locations/Kottayam/saravana-hotel(thengana)" element={<KottayamSaravanTh />}/>
-          <Route path="/locations/Kottayam/saravana-hotel(chanaganassery)" element={<KottayamSaravanCh />}/>
+          <Route path="/locations/Kottayam/saravana-hotel(changanassery)" element={<KottayamSaravanCh />}/>
           <Route path="/locations/Kottayam/yemeni-mandhi" element={<KottayamTaban />}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
