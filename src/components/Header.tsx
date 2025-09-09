@@ -1,8 +1,28 @@
 import { Button } from "@/components/ui/button";
 import logoP from "@/assets/adbitelogo.jpeg";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
-  const navItems = ["Pathanamthitta", "Kottayam", "Alappuzha"];
+  const navItems = [
+    { label: "Pathanamthitta", href: "#locations" },
+    { label: "Kottayam", href: "#locations" },
+    { label: "Alappuzha", href: "#locations" }
+  ];
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavClick = () => {
+    if (location.pathname !== "/") {
+      navigate("/", { replace: false });
+      setTimeout(() => {
+        const section = document.getElementById("locations");
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }, 100); // Wait for navigation/render
+    } else {
+      const section = document.getElementById("locations");
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <header className="w-full px-6 py-4 bg-background/80 backdrop-blur-sm border-b border-border/20">
@@ -22,13 +42,14 @@ const Header = () => {
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="text-foreground/80 hover:text-foreground transition-colors font-medium"
+            <button
+              key={item.label}
+              onClick={handleNavClick}
+              className="bg-transparent border-none text-foreground/80 hover:text-foreground transition-colors font-medium cursor-pointer"
+              style={{ background: "none" }}
             >
-              {item}
-            </a>
+              {item.label}
+            </button>
           ))}
         </nav>
 

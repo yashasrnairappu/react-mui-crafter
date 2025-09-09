@@ -1,27 +1,47 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 const LocationCards = () => {
+  const navigate = useNavigate();
+
   const locations = [
     {
       name: "Pathanamthitta",
       slug: "Pathanamthitta",
-      description: "Experience premium indoor advertising in Pathanamthitta's busiest food courts"
+      description: "Experience premium indoor advertising in Pathanamthitta's busiest food courts",
+      place: ["New Jhons", "Aramana Resturant"]
     },
     {
       name: "Kottayam", 
       slug: "Kottayam",
-      description: "Reach your target audience in Kottayam's commercial hubs"
+      description: "Reach your target audience in Kottayam's commercial hubs",
+      place: ["Saravana Hotel(Thengana)","Saravana Hotel(Chanaganassery)","Yemeni Mandhi"]
     },
     {
       name: "Alappuzha",
       slug: "Alappuzha", 
-      description: "Connect with customers in Alappuzha's popular dining destinations"
+      description: "Connect with customers in Alappuzha's popular dining destinations",
+      place: ["Coming Soon..."]
     }
   ];
 
+  const handleRedirect = (locationSlug: string, place: string) => {
+    if (place === "Coming Soon...") {
+      navigate("/");
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 100);
+    } else {
+      navigate(`/locations/${locationSlug}/${place.replace(/\s+/g, "-").toLowerCase()}`);
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 100);
+    }
+  };
+
   return (
-    <section className="py-20 px-6 bg-muted/30">
+    <section id="locations" className="py-20 px-6 bg-muted/30">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -42,12 +62,18 @@ const LocationCards = () => {
                 <p className="text-foreground/70 mb-6 leading-relaxed">
                   {location.description}
                 </p>
-                <Button 
-                  variant="outline" 
-                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                >
-                  Coming Soon...
-                </Button>
+                <div className="flex flex-col gap-3">
+                  {location.place.map((place) => (
+                    <Button
+                      key={place}
+                      variant="outline"
+                      className="w-full transition-colors hover:bg-primary hover:text-primary-foreground"
+                      onClick={() => handleRedirect(location.slug, place)}
+                    >
+                      {place}
+                    </Button>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -56,5 +82,4 @@ const LocationCards = () => {
     </section>
   );
 };
-
 export default LocationCards;
