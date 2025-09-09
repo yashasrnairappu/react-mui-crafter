@@ -9,7 +9,7 @@ const SarvanaCh = () => {
         className="w-full md:w-1/2 max-w-lg rounded-lg shadow-lg mb-8 md:mb-0 md:mr-12 animate-slide-left"
       />
       <div className="w-full md:w-1/2 max-w-lg">
-        <h1 className="text-4xl font-bold mb-4 animate-slide-right">Saravana Hotel (Chanaganassery)</h1>
+        <h1 className="text-4xl font-bold mb-4 animate-slide-right">Saravana Hotel (Changanassery)</h1>
         <div className="border-l-4 border-primary pl-4 mb-6 animate-slide-right">
           <div className="grid gap-4">
             <div className="flex justify-between bg-background p-4 rounded">
