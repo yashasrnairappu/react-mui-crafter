@@ -1,6 +1,6 @@
 import React from "react";
 import ComingSoon from "@/assets/cs.jpg";
-const Josettayi = () => {
+const jos = () => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-muted/30 animate-fade-in">
       <img
@@ -43,4 +43,4 @@ const Josettayi = () => {
   );
 };
 
-export default Josettayi;
+export default jos;
