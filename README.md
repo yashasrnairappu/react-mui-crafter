@@ -24,4 +24,5 @@ This project is built with:
 - Tailwind CSS
 
 
+locations upadte 23/9/2025 
 
