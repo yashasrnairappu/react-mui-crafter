@@ -16,7 +16,7 @@ const LocationCards = () => {
       name: "Kottayam", 
       slug: "Kottayam",
       description: "Reach your target audience in Kottayam's commercial hubs",
-      place: ["Saravana Hotel(Thengana)","Saravana Hotel(Changanassery)","Yemeni Mandhi"]
+      place: ["Saravana Hotel(Thengana)","Saravana Hotel(Changanassery)","Yemeni Mandhi","Josettayi Naandan Thattu Kada","BBQ (Eat And Drink)"]
     },
     {
       name: "Alappuzha",
