@@ -10,7 +10,7 @@ const LocationCards = () => {
       name: "Pathanamthitta",
       slug: "Pathanamthitta",
       description: "Experience premium indoor advertising in Pathanamthitta's busiest food courts",
-      place: ["New Jhons", "Aramana Resturant"]
+      place: ["New Jhons", "Aramana Resturant", "Mallappally Private Bus Stand"]
     },
     {
       name: "Kottayam", 

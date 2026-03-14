@@ -25,7 +25,7 @@ const NewJhons = () => {
               <span>8 AM to 10 PM</span>
             </div>
             <div className="flex justify-between bg-background p-4 rounded">
-              <span className="font-semibold text-muted-foreground">Footfall</span>
+              <span className="font-semibold text-muted-foreground">Footfall/Day</span>
               <span>350+</span>
             </div>
             <div className="flex justify-between bg-background p-4 rounded">

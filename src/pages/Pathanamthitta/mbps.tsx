@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import Taban from "@/components/taban";
+import Mbps from "@/components/Mpbs";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -7,7 +7,7 @@ const Index = () => {
 return (
     <div className="min-h-screen">
     <Header />
-    <Taban />
+    <Mbps />
     <ContactSection />
     <Footer />
     </div>

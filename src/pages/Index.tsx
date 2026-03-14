@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import LocationCards from "@/components/LocationCards";
 import BenefitsSection from "@/components/BenefitsSection";
 import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
       <BenefitsSection />
       <LocationCards />
       <ContactSection />
+      <Footer />
     </div>
   );
 };

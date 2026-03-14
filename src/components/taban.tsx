@@ -25,7 +25,7 @@ const Taban = () => {
               <span>12 PM to 11 PM</span>
             </div>
             <div className="flex justify-between bg-background p-4 rounded">
-              <span className="font-semibold text-muted-foreground">Footfall</span>
+              <span className="font-semibold text-muted-foreground">Footfall/Day</span>
               <span>400+</span>
             </div>
             <div className="flex justify-between bg-background p-4 rounded">

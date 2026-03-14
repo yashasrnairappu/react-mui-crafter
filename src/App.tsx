@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PathanamthittaNewJhons from "./pages/Pathanamthitta/new-jhons";
 import PathanamthittaAraman from "./pages/Pathanamthitta/araman";
+import PathanamthittaMbps from "./pages/Pathanamthitta/mbps";
 import KottayamSaravanCh from "./pages/Kottayam/sa-ch";
 import KottayamSaravanTh from "./pages/Kottayam/sa-th";
 import KottayamTaban from "./pages/Kottayam/tabann";
@@ -26,6 +27,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/locations/Pathanamthitta/new-jhons" element={<PathanamthittaNewJhons />}/>
           <Route path="/locations/Pathanamthitta/aramana-resturant" element={<PathanamthittaAraman />}/>
+          <Route path="/locations/Pathanamthitta/mallappally-private-bus-stand" element={<PathanamthittaMbps />}/>
           <Route path="/locations/Kottayam/saravana-hotel(thengana)" element={<KottayamSaravanTh />}/>
           <Route path="/locations/Kottayam/saravana-hotel(changanassery)" element={<KottayamSaravanCh />}/>
           <Route path="/locations/Kottayam/yemeni-mandhi" element={<KottayamTaban />}/>

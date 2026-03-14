@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import SarvanaTh from "@/components/saravan-th";
 import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
 return (
@@ -8,6 +9,7 @@ return (
     <Header />
     <SarvanaTh />
     <ContactSection />
+    <Footer />
     </div>
 );
 };

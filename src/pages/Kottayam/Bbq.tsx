@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Bbq from "@/components/bq";
 import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
 return (
@@ -8,6 +9,7 @@ return (
     <Header />
     <Bbq />
     <ContactSection />
+    <Footer />
     </div>
 );
 };
