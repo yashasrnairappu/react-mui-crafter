@@ -157,7 +157,7 @@ const Header = () => {
               {navItems.map((item, i) => (
                 <motion.button
                   key={item.label}
-                  onClick={handleNavClick}
+                  onClick={() => handleNavClick(item.href)}
                   className="text-left text-white/70 hover:text-white hover:bg-white/5 text-base font-medium px-4 py-3 rounded-lg cursor-pointer bg-transparent border-none transition-all duration-150"
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
