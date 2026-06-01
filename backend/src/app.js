@@ -8,7 +8,7 @@ const app = express()
 
 app.use(cors({
   origin: [
-    'http://localhost:5173',
+    'https://adbite-admin.onrender.com',
     'https://react-mui-crafter.onrender.com'
   ],  
   credentials: true,                
