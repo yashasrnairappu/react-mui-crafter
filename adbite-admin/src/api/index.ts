@@ -34,9 +34,16 @@ export const login = (password: string) =>
 export const logout = () =>
   api.post<{ message: string }>('/api/auth/logout')
 
-export const verifyAuth = () =>
-  api.get<{ valid: boolean }>('/api/auth/verify')
-
+export const verifyAuth = async (): Promise<boolean> => {
+  try {
+    const res = await api.get("/auth/verify");
+    return res.data.valid === true; // ← only true if server says valid
+  } catch (err: any) {
+    // 401 = invalid token → false
+    // Network error = don't know → treat as false
+    return false;
+  }
+};
 // Locations
 export const getLocations = () =>
   api.get<{ locations: Location[] }>('/api/locations')
