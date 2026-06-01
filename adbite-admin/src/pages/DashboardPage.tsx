@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Search } from 'lucide-react'
-import { Location, City, getLocations } from '../api'
+import { Location, getLocations } from '../api'
 import { Navbar } from '../components/Navbar'
 import { StatsBar } from '../components/StatsBar'
 import { CityTabs } from '../components/CityTabs'
@@ -11,7 +11,7 @@ import { DeleteModal } from '../components/DeleteModal'
 import { ToastContainer } from '../components/Toast'
 import { useToast } from '../hooks/useToast'
 
-type Filter = City | 'All'
+type Filter = string | 'All'
 
 export const DashboardPage = () => {
   const [locations, setLocations] = useState<Location[]>([])
@@ -45,15 +45,15 @@ export const DashboardPage = () => {
   const handleSuccess = (message: string) => {
     addToast(message, 'success')
     fetchLocations(true)
-    window.location.reload() 
+    window.location.reload()
   }
 
   const handleError = (message: string) => {
     addToast(message, 'error')
   }
 
-  const handleCityStatClick = (city: City) => {
-    setFilter((prev) => (prev === city ? 'All' : city))
+  const handleCityStatClick = (city: string) => {
+    setFilter(prev => prev === city ? 'All' : city)
   }
 
   const filteredLocations = locations.filter((l) => {
@@ -79,7 +79,6 @@ export const DashboardPage = () => {
           transition={{ duration: 0.5 }}
         >
           <StatsBar
-            locations={locations}
             activeCity={filter}
             onCityClick={handleCityStatClick}
           />
@@ -207,7 +206,6 @@ export const DashboardPage = () => {
         onError={handleError}
       />
 
-      {/* Toasts */}
       <ToastContainer toasts={toasts} removeToast={removeToast} />
     </div>
   )
