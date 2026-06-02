@@ -11,6 +11,32 @@ interface LocationModalProps {
   onError: (message: string) => void
 }
 
+
+const compressImage = (file: File): Promise<File> => {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.src = URL.createObjectURL(file)
+    img.onload = () => {
+      const MAX = 1200
+      let { width, height } = img
+      if (width > MAX) {
+        height = (height * MAX) / width
+        width = MAX
+      }
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      canvas.getContext('2d')!.drawImage(img, 0, 0, width, height)
+      canvas.toBlob(
+        (blob) => resolve(new File([blob!], file.name, { type: 'image/jpeg' })),
+        'image/jpeg',
+        0.75
+      )
+    }
+    img.onerror = () => resolve(file) 
+  })
+}
+
 const emptyStats: LocationStats = {
   seats: '',
   bills: '',
@@ -22,8 +48,8 @@ const emptyStats: LocationStats = {
 
 export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }: LocationModalProps) => {
   const [name, setName] = useState('')
-  const [city, setCity] = useState('')        // the typed/selected city string
-  const [cities, setCities] = useState<City[]>([])  // City[] from DB for suggestions
+  const [city, setCity] = useState('') 
+  const [cities, setCities] = useState<City[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [stats, setStats] = useState<LocationStats>(emptyStats)
   const [existingImages, setExistingImages] = useState<string[]>([])
@@ -35,7 +61,6 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
 
   const isEdit = !!location
 
-  // Fetch cities for suggestions whenever modal opens
   useEffect(() => {
     if (isOpen) {
       getCities()
@@ -109,7 +134,8 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
         formData.append('existingImages', JSON.stringify(existingImages))
       }
 
-      newImages.forEach(file => formData.append('images', file))
+     const compressedImages = await Promise.all(newImages.map(compressImage))
+     compressedImages.forEach(file => formData.append('images', file))
 
       if (isEdit && location) {
         await updateLocation(location._id, formData)

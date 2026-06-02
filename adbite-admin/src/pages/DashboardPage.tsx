@@ -14,19 +14,20 @@ import { useToast } from '../hooks/useToast'
 type Filter = string | 'All'
 
 export const DashboardPage = () => {
-  const [locations, setLocations] = useState<Location[]>([])
-  const [filter, setFilter] = useState<Filter>('All')
-  const [searchQuery, setSearchQuery] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-  const [isRefreshing, setIsRefreshing] = useState(false)
-  const [addModalOpen, setAddModalOpen] = useState(false)
-  const [editLocation, setEditLocation] = useState<Location | null>(null)
+  const [locations, setLocations]           = useState<Location[]>([])
+  const [filter, setFilter]                 = useState<Filter>('All')
+  const [searchQuery, setSearchQuery]       = useState('')
+  const [isLoading, setIsLoading]           = useState(true)
+  const [isRefreshing, setIsRefreshing]     = useState(false)
+  const [addModalOpen, setAddModalOpen]     = useState(false)
+  const [editLocation, setEditLocation]     = useState<Location | null>(null)
   const [deleteLocation, setDeleteLocation] = useState<Location | null>(null)
+  const { toasts, addToast, removeToast }   = useToast()
 
-  const { toasts, addToast, removeToast } = useToast()
-
+  // ─── Fetch ────────────────────────────────────────────
   const fetchLocations = useCallback(async (isRefresh = false) => {
     if (isRefresh) setIsRefreshing(true)
+    else setIsLoading(true)
     try {
       const res = await getLocations()
       setLocations(res.data.locations)
@@ -38,27 +39,24 @@ export const DashboardPage = () => {
     }
   }, [addToast])
 
-  useEffect(() => {
-    fetchLocations()
-  }, [fetchLocations])
+  useEffect(() => { fetchLocations() }, [fetchLocations])
 
+  // ─── Handlers ─────────────────────────────────────────
   const handleSuccess = (message: string) => {
     addToast(message, 'success')
     fetchLocations(true)
-    window.location.reload()
   }
 
-  const handleError = (message: string) => {
-    addToast(message, 'error')
-  }
+  const handleError   = (message: string) => addToast(message, 'error')
 
-  const handleCityStatClick = (city: string) => {
+  const handleCityStatClick = (city: string) =>
     setFilter(prev => prev === city ? 'All' : city)
-  }
 
+  // ─── Filter ───────────────────────────────────────────
   const filteredLocations = locations.filter((l) => {
-    const matchesCity = filter === 'All' || l.city === filter
-    const matchesSearch = !searchQuery || l.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesCity   = filter === 'All' || l.city === filter
+    const matchesSearch = !searchQuery ||
+      l.name.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesCity && matchesSearch
   })
 
@@ -72,7 +70,8 @@ export const DashboardPage = () => {
       />
 
       <main className="max-w-7xl mx-auto px-5 md:px-8 py-8 space-y-8">
-        {/* Stats */}
+
+        {/* Stats Bar */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
@@ -81,6 +80,7 @@ export const DashboardPage = () => {
           <StatsBar
             activeCity={filter}
             onCityClick={handleCityStatClick}
+            refreshKey={locations.length}
           />
         </motion.div>
 
@@ -96,7 +96,6 @@ export const DashboardPage = () => {
             activeFilter={filter}
             onFilterChange={setFilter}
           />
-
           <div className="relative sm:ml-auto">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
             <input
@@ -109,7 +108,7 @@ export const DashboardPage = () => {
           </div>
         </motion.div>
 
-        {/* Content */}
+        {/* Grid / Skeleton / Empty */}
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {[...Array(8)].map((_, i) => (
@@ -119,24 +118,20 @@ export const DashboardPage = () => {
                   <div className="h-4 bg-white/5 rounded-lg w-3/4" />
                   <div className="grid grid-cols-3 gap-2">
                     {[...Array(3)].map((_, j) => (
-                      <div key={j} className="h-14 bg-white/4 rounded-xl" />
+                      <div key={j} className="h-14 bg-white/5 rounded-xl" />
                     ))}
                   </div>
-                  <div className="h-9 bg-white/4 rounded-xl" />
+                  <div className="h-9 bg-white/5 rounded-xl" />
                 </div>
               </div>
             ))}
           </div>
         ) : filteredLocations.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-24"
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-24">
             <div className="w-16 h-16 bg-white/5 border border-white/8 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <MapPin className="w-7 h-7 text-white/20" />
             </div>
-            <h3 className="font-syne font-600 text-white/50 text-lg mb-2">No locations found</h3>
+            <h3 className="font-syne font-semibold text-white/50 text-lg mb-2">No locations found</h3>
             <p className="font-dm text-white/25 text-sm">
               {searchQuery
                 ? `No results for "${searchQuery}"`
@@ -160,15 +155,15 @@ export const DashboardPage = () => {
                   key={location._id}
                   location={location}
                   index={i}
-                  onEdit={setEditLocation}
-                  onDelete={setDeleteLocation}
+                  onEdit={(loc) => setEditLocation(loc)}
+                  onDelete={(loc) => setDeleteLocation(loc)}
                 />
               ))}
             </motion.div>
           </AnimatePresence>
         )}
 
-        {/* Bottom count */}
+        {/* Count */}
         {!isLoading && filteredLocations.length > 0 && (
           <motion.p
             initial={{ opacity: 0 }}
@@ -181,7 +176,7 @@ export const DashboardPage = () => {
         )}
       </main>
 
-      {/* Modals */}
+      {/* Add Modal */}
       <LocationModal
         isOpen={addModalOpen}
         location={null}
@@ -190,6 +185,7 @@ export const DashboardPage = () => {
         onError={handleError}
       />
 
+      {/* Edit Modal */}
       <LocationModal
         isOpen={!!editLocation}
         location={editLocation}
@@ -198,6 +194,7 @@ export const DashboardPage = () => {
         onError={handleError}
       />
 
+      {/* Delete Modal */}
       <DeleteModal
         isOpen={!!deleteLocation}
         location={deleteLocation}

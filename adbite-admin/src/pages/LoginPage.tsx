@@ -14,7 +14,6 @@ export const LoginPage = () => {
   const navigate = useNavigate()
 
   const handleSubmit = async (e: FormEvent) => {
-    console.log(password);
     
     e.preventDefault()
     if (!password.trim()) { setError('Please enter your password'); return }

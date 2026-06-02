@@ -1,6 +1,7 @@
 import Location from "../models/locationSchema.js";
 import cloudinary from "../config/cloudinary.js";
 import { uploadToCloudinary } from "../config/cloudinary.js";
+
 export const addLocation = async (req, res) => {
   try {
     let imageUrls = [];

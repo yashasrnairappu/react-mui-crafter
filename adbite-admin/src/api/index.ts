@@ -36,11 +36,9 @@ export const logout = () =>
 
 export const verifyAuth = async (): Promise<boolean> => {
   try {
-    const res = await api.get("/auth/verify");
-    return res.data.valid === true; // ← only true if server says valid
+    const res = await api.get("/api/auth/verify");
+    return res.data.valid === true;
   } catch (err: any) {
-    // 401 = invalid token → false
-    // Network error = don't know → treat as false
     return false;
   }
 };
