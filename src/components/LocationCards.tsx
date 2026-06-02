@@ -68,7 +68,21 @@ const LocationCards = () => {
     )
   }
 
-  const cities = Object.keys(grouped).sort()
+ const cityOrder = [
+  "Pathanamthitta",
+  "Kottayam",
+]
+
+const cities = Object.keys(grouped).sort((a, b) => {
+  const indexA = cityOrder.indexOf(a)
+  const indexB = cityOrder.indexOf(b)
+
+  if (indexA === -1 && indexB === -1) return a.localeCompare(b)
+  if (indexA === -1) return 1
+  if (indexB === -1) return -1
+
+  return indexA - indexB
+})
 
   return (
     <section id="locations" className="py-24 px-6 bg-[#141414] relative overflow-hidden">

@@ -226,7 +226,7 @@ const LocationDetailPage = () => {
               whileTap={{ scale: 0.97 }}
               onClick={() =>
                 window.open(
-                  `https://wa.me/916282359567?text=Hi%2C%20I%27m%20interested%20in%20advertising%20at%20${encodeURIComponent(venue.name)}`,
+                  `https://wa.me/7907262988?text=Hi%2C%20I%27m%20interested%20in%20advertising%20at%20${encodeURIComponent(venue.name)}`,
                   "_blank"
                 )
               }
@@ -282,7 +282,7 @@ const LocationDetailPage = () => {
               whileTap={{ scale: 0.97 }}
               onClick={() =>
                 window.open(
-                  `https://wa.me/916282359567?text=Hi%2C%20I%27m%20interested%20in%20advertising%20at%20${encodeURIComponent(venue.name)}`,
+                  `https://wa.me/7907262988?text=Hi%2C%20I%27m%20interested%20in%20advertising%20at%20${encodeURIComponent(venue.name)}`,
                   "_blank"
                 )
               }
