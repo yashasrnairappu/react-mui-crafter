@@ -18,6 +18,11 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+			syne: ["Syne", "sans-serif"],
+			dm: ["DM Sans", "sans-serif"],
+			malayalam: ["Noto Sans Malayalam", "sans-serif"], 
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
