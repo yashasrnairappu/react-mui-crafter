@@ -12,7 +12,6 @@ import BackToTop from "@/components/ui/BackToTop";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <Header />
       <Hero />
       <MarqueeBanner/>
       <BenefitsSection/>
@@ -20,7 +19,6 @@ const Index = () => {
       <ProcessSection/>
       <LocationCards />
       <ContactSection />
-      <Footer />
       <BackToTop/> 
     </div>
   );
