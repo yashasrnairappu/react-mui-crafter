@@ -61,6 +61,7 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
 
   const isEdit = !!location
 
+  
   useEffect(() => {
     if (isOpen) {
       getCities()
@@ -108,12 +109,11 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
   const handleStat = (key: keyof LocationStats, val: string) =>
     setStats(prev => ({ ...prev, [key]: val }))
 
-  // Filter City[] objects by typed value
+
   const suggestions = city.trim()
     ? cities.filter(c => c.name.toLowerCase().includes(city.toLowerCase()))
     : cities
 
-  // True when typed value doesn't match any existing city name
   const isNewCity = city.trim() !== '' && !cities.some(
     c => c.name.toLowerCase() === city.trim().toLowerCase()
   )
