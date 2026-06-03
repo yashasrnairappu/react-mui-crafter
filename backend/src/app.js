@@ -10,6 +10,7 @@ app.use(cors({
   origin: [
     "http://localhost:8080",
     "http://localhost:5173",
+    "https://info.adbite.in",
     'https://adbite-admin.onrender.com',
     'https://react-mui-crafter.onrender.com'
   ],  
@@ -27,7 +28,23 @@ app.get('/', (req, res) => res.send('Hello World!'))
 app.use('/api',authRoutes)
 app.use('/api',locationRoutes)
 
-
+// Add temporarily in server.js
+app.get('/test-drive', async (req, res) => {
+  try {
+    const { uploadToDrive } = await import('./config/googleDrive.js')
+    
+    // Test with a small dummy buffer
+    const testBuffer = Buffer.from('test')
+    const result = await uploadToDrive(testBuffer, 'test.jpg', 'image/jpeg')
+    res.json({ success: true, result })
+  } catch (error) {
+    res.json({ 
+      success: false, 
+      message: error.message,
+      stack: error.stack  // ← full error trace
+    })
+  }
+})
 
 
 export default app; 
