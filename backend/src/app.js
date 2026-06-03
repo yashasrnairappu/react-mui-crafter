@@ -11,8 +11,7 @@ app.use(cors({
     "http://localhost:8080",
     "http://localhost:5173",
     "https://info.adbite.in",
-    'https://adbite-admin.onrender.com',
-    'https://react-mui-crafter.onrender.com'
+    'https://admin.adbite.in'
   ],  
   credentials: true,                
 }))
