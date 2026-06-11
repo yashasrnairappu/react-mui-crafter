@@ -1,8 +1,12 @@
 import axios from 'axios'
 
+console.log(import.meta.env.VITE_BACKEND_API_URL);
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:3000',
 })
+
+console.log('API URL:', import.meta.env.VITE_BACKEND_API_URL)
 
 export interface LocationStats {
   seats: string
