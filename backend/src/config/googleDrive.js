@@ -3,16 +3,18 @@ import { Readable } from 'stream'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const credentials = JSON.parse(
-  Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_B64, 'base64').toString('utf-8')
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.BACKEND_URL
 )
 
-const auth = new google.auth.GoogleAuth({
-  credentials,
-  scopes: ['https://www.googleapis.com/auth/drive'],
+oauth2Client.setCredentials({
+  refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
 })
 
-export const drive = google.drive({ version: 'v3', auth })
+export const drive = google.drive({ version: 'v3', auth: oauth2Client })
+
 
 export const uploadToDrive = async (buffer, filename, mimetype) => {
   console.log('BACKEND_URL:', process.env.BACKEND_URL)
