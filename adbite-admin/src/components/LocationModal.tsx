@@ -67,7 +67,7 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
   useEffect(() => {
     if (isOpen) {
       getCities().then(res => setCities(res.data.cities)).catch(() => {})
-      getDistricts().then(res => setDistricts(res.data.districts)).catch(() => {})
+      getDistricts().then(res => setDistricts(res.data.districts.filter(d => d.name))).catch(() => {})
     }
   }, [isOpen])
 
@@ -77,7 +77,7 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
       if (location) {
         setName(location.name)
         setCity(location.city)
-        setDistrict(location.district)
+        setDistrict(location.district || '')
         setStats(location.stats)
         setExistingImages(location.images)
       } else {
