@@ -135,10 +135,11 @@ export const updateLocation = async (req, res) => {
     const updated = await Location.findByIdAndUpdate(
       req.params.id,
       {
-        name:   req.body.name  || location.name,
-        city:   req.body.city  || location.city,
-        stats:  JSON.parse(req.body.stats || '{}'),
-        images: [...existingImages, ...newImageUrls],
+        name:     req.body.name     || location.name,
+        city:     req.body.city     || location.city,
+        district: req.body.district || location.district,
+        stats:    JSON.parse(req.body.stats || '{}'),
+        images:   [...existingImages, ...newImageUrls],
       },
       { new: true }
     )
@@ -182,6 +183,25 @@ export const city = async (req, res) => {
       { $project: { _id: 0, name: 1, count: 1 } } 
     ])
     res.json({ success: true, cities })
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message })
+  }
+}
+
+export const district = async (req, res) => {
+  try {
+    const districts = await Location.aggregate([
+      {
+        $group: {
+          _id: { $toLower: { $trim: { input: '$district' } } },
+          name: { $first: { $trim: { input: '$district' } } },
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { name: 1 } },
+      { $project: { _id: 0, name: 1, count: 1 } }
+    ])
+    res.json({ success: true, districts })
   } catch (error) {
     res.status(500).json({ success: false, message: error.message })
   }
