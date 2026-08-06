@@ -5,7 +5,7 @@ import LocationCards from "@/components/LocationCards";
 import BenefitsSection from "@/components/BenefitsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-//import ServicesSection from "@/components/ServicesSection";
+//import ServicesSection from "@/components/ServicesSection";       //<ServicesSection/>
 import ProcessSection from "@/components/ProcessSection";
 import BackToTop from "@/components/ui/BackToTop";
 
@@ -15,7 +15,6 @@ const Index = () => {
       <Hero />
       <MarqueeBanner/>
       <BenefitsSection/>
-      //<ServicesSection/>
       <ProcessSection/>
       <LocationCards />
       <ContactSection />
