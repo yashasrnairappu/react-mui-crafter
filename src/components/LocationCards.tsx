@@ -13,25 +13,27 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-
-const groupByCity = (locations: Location[]) => {
-  return locations.reduce<Record<string, Location[]>>((acc, loc) => {
-    if (!acc[loc.city]) acc[loc.city] = []
-    acc[loc.city].push(loc)
+const groupByDistrict = (locations: Location[]) => {
+  return locations.reduce<Record<string, Record<string, Location[]>>>((acc, loc) => {
+    const district = loc.district || 'Other'
+    const city = loc.city
+    if (!acc[district]) acc[district] = {}
+    if (!acc[district][city]) acc[district][city] = []
+    acc[district][city].push(loc)
     return acc
   }, {})
 }
 
 const LocationCards = () => {
   const navigate = useNavigate();
-  const [grouped, setGrouped] = useState<Record<string, Location[]>>({})
+  const [grouped, setGrouped] = useState<Record<string, Record<string, Location[]>>>({})
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getLocations()
       .then((res) => {
         const active = res.data.locations.filter((l) => l.isActive !== false)
-        setGrouped(groupByCity(active))
+        setGrouped(groupByDistrict(active))
       })
       .catch(console.error)
       .finally(() => setIsLoading(false))
@@ -68,21 +70,7 @@ const LocationCards = () => {
     )
   }
 
- const cityOrder = [
-  "Pathanamthitta",
-  "Kottayam",
-]
-
-const cities = Object.keys(grouped).sort((a, b) => {
-  const indexA = cityOrder.indexOf(a)
-  const indexB = cityOrder.indexOf(b)
-
-  if (indexA === -1 && indexB === -1) return a.localeCompare(b)
-  if (indexA === -1) return 1
-  if (indexB === -1) return -1
-
-  return indexA - indexB
-})
+  const districts = Object.keys(grouped).sort((a, b) => a.localeCompare(b))
 
   return (
     <section id="locations" className="py-24 px-6 bg-[#141414] relative overflow-hidden">
@@ -123,13 +111,16 @@ const cities = Object.keys(grouped).sort((a, b) => {
           viewport={{ once: true, margin: "-60px" }}
           className="grid lg:grid-cols-3 gap-6"
         >
-          {cities.map((city) => {
-            const cityLocations = grouped[city]
-            const count = cityLocations.length
+          {districts.map((district) => {
+            const citiesInDistrict = Object.keys(grouped[district]).sort((a, b) => a.localeCompare(b))
+            const totalCount = citiesInDistrict.reduce(
+              (sum, c) => sum + grouped[district][c].length,
+              0
+            )
 
             return (
               <motion.div
-                key={city}
+                key={district}
                 variants={cardVariants}
                 className="group bg-[#1C1C1C] rounded-2xl border border-white/8 overflow-hidden hover:border-[#E8181E]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)] flex flex-col"
               >
@@ -137,34 +128,43 @@ const cities = Object.keys(grouped).sort((a, b) => {
                 <div className="p-7 border-b border-white/8">
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="font-syne font-extrabold text-2xl text-white">
-                      {city}
+                      {district}
                     </h3>
                     <span className="text-[10px] font-bold tracking-[0.1em] uppercase font-dm text-[#E8181E] bg-[#E8181E]/10 px-3 py-1 rounded-full border border-[#E8181E]/20">
-                      {count} {count === 1 ? 'Venue' : 'Venues'}
+                      {totalCount} {totalCount === 1 ? 'Venue' : 'Venues'}
                     </span>
                   </div>
                   <p className="text-white/45 text-sm font-dm leading-relaxed">
-                    Reach your audience in {city}'s busiest dining spots.
+                    Reach your audience across {district}'s busiest dining spots.
                   </p>
                 </div>
 
-                {/* Location list */}
-                <div className="p-7 flex flex-col gap-3 flex-1">
-                  {cityLocations.map((location) => (
-                    <motion.button
-                      key={location._id}
-                      onClick={() => handleRedirect(city, location.name, location._id)}
-                      whileHover={{ x: 4 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium font-dm transition-all duration-200 border cursor-pointer bg-white/5 border-white/8 text-white/70 hover:bg-[#E8181E]/10 hover:border-[#E8181E]/30 hover:text-white"
-                    >
-                      <span className="flex items-center justify-between">
-                        {location.name}
-                        <span className="text-[#E8181E] opacity-0 group-hover:opacity-60 transition-opacity duration-200 text-xs">
-                          →
-                        </span>
-                      </span>
-                    </motion.button>
+                {/* City groups + location list */}
+                <div className="p-7 flex flex-col gap-5 flex-1">
+                  {citiesInDistrict.map((city) => (
+                    <div key={city}>
+                      <p className="text-white/30 text-[11px] font-dm font-bold uppercase tracking-wide mb-2">
+                        {city}
+                      </p>
+                      <div className="flex flex-col gap-3">
+                        {grouped[district][city].map((location) => (
+                          <motion.button
+                            key={location._id}
+                            onClick={() => handleRedirect(city, location.name, location._id)}
+                            whileHover={{ x: 4 }}
+                            whileTap={{ scale: 0.97 }}
+                            className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium font-dm transition-all duration-200 border cursor-pointer bg-white/5 border-white/8 text-white/70 hover:bg-[#E8181E]/10 hover:border-[#E8181E]/30 hover:text-white"
+                          >
+                            <span className="flex items-center justify-between">
+                              {location.name}
+                              <span className="text-[#E8181E] opacity-0 group-hover:opacity-60 transition-opacity duration-200 text-xs">
+                                →
+                              </span>
+                            </span>
+                          </motion.button>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </motion.div>
@@ -172,7 +172,7 @@ const cities = Object.keys(grouped).sort((a, b) => {
           })}
 
           {/* Empty state */}
-          {cities.length === 0 && (
+          {districts.length === 0 && (
             <div className="lg:col-span-3 text-center py-16 text-white/30 font-dm">
               No locations available yet.
             </div>
