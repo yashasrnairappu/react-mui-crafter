@@ -18,6 +18,7 @@ export interface Location {
   _id: string
   name: string
   city: string
+  district: string
   images: string[]
   stats: LocationStats
   isActive: boolean
