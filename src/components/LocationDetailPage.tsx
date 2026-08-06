@@ -107,6 +107,7 @@ const LocationDetailPage = () => {
             <ArrowLeft className="w-4 h-4" />
             Back
           </button>
+          <span className="text-white/40 text-sm font-dm">{venue.district}</span>
           <span className="text-white/20">/</span>
           <span className="text-white/40 text-sm font-dm">{venue.city}</span>
           <span className="text-white/20">/</span>
@@ -127,7 +128,8 @@ const LocationDetailPage = () => {
             <div className="flex items-center gap-2 mb-5">
               <MapPin className="w-4 h-4 text-[#E8181E]" />
               <span className="text-[#E8181E] text-xs font-bold tracking-[0.12em] uppercase font-dm">
-                {venue.city}
+                {venue.district} · {venue.city}
+              </span>
               </span>
             </div>
 
