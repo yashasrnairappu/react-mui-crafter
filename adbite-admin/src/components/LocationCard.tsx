@@ -47,14 +47,24 @@ export const LocationCard = ({ location, index, onEdit, onDelete }: LocationCard
           </div>
         )}
 
-        {/* City badge */}
+        {/* City with district  badge */}
         <div
           className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-white text-xs font-dm font-500"
           style={{ background: `${color}dd`, border: `1px solid ${color}` }}
         >
           <MapPin className="w-3 h-3" />
-          {location.city}
+            {location.city}{location.district ? `, ${location.district}` : ''}
         </div>
+
+        {/* District badge
+
+        <div
+          className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-white text-xs font-dm font-500"
+          style={{ background: `${color}dd`, border: `1px solid ${color}` }}
+        >
+          <MapPin className="w-3 h-3" />
+  {location.city}{location.district ? `, ${location.district}` : ''}
+</div>*/}
 
         {/* Photo count */}
         {location.images.length > 1 && (
