@@ -21,13 +21,21 @@ export interface City {
   count: number
 }
 
+export interface District {
+  name: string
+  count: number
+}
+
+
 export interface Location {
   _id: string
   name: string
-  city:string
+  city: string
+  district: string
   images: string[]
   stats: LocationStats
 }
+
 
 // Auth
 export const login = (password: string) =>
@@ -65,5 +73,10 @@ export const deleteLocation = (id: string) =>
 
 export const getCities = () =>
   api.get<{ success: boolean; cities: City[] }>('/api/location/cities')
+
+
+
+export const getDistricts = () =>
+  api.get<{ success: boolean; districts: District[] }>('/api/location/districts')
 
 export default api
