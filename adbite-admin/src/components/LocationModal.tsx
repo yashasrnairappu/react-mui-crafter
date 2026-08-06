@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, ChangeEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Upload, Plus, MapPin } from 'lucide-react'
-import { Location, City, LocationStats, createLocation, updateLocation, getCities } from '../api'
+import { Location, City, District, LocationStats, createLocation, updateLocation, getCities, getDistricts } from '../api'
 
 interface LocationModalProps {
   isOpen: boolean
@@ -50,6 +50,9 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
   const [name, setName] = useState('')
   const [city, setCity] = useState('') 
   const [cities, setCities] = useState<City[]>([])
+  const [district, setDistrict] = useState('')
+  const [districts, setDistricts] = useState<District[]>([])
+  const [showDistrictSuggestions, setShowDistrictSuggestions] = useState(false)
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [stats, setStats] = useState<LocationStats>(emptyStats)
   const [existingImages, setExistingImages] = useState<string[]>([])
@@ -70,17 +73,26 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
     }
   }, [isOpen])
 
+  useEffect(() => {
+  if (isOpen) {
+      getCities().then(res => setCities(res.data.cities)).catch(() => {})
+      getDistricts().then(res => setDistricts(res.data.districts)).catch(() => {})
+    }
+  }, [isOpen])
+
   // Populate fields on edit, reset on add
   useEffect(() => {
     if (isOpen) {
       if (location) {
         setName(location.name)
         setCity(location.city)
+        setDistrict(location.district)
         setStats(location.stats)
         setExistingImages(location.images)
       } else {
         setName('')
         setCity('')
+        setDistrict('')
         setStats(emptyStats)
         setExistingImages([])
       }
@@ -118,9 +130,18 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
     c => c.name.toLowerCase() === city.trim().toLowerCase()
   )
 
+  const districtSuggestions = district.trim()
+  ? districts.filter(d => d.name.toLowerCase().includes(district.toLowerCase()))
+  : districts
+
+  const isNewDistrict = district.trim() !== '' && !districts.some(
+    d => d.name.toLowerCase() === district.trim().toLowerCase()
+  )
+
   const handleSubmit = async () => {
     if (!name.trim()) { setError('Location name is required'); return }
     if (!city.trim()) { setError('City is required'); return }
+    if (!district.trim()) { setError('District is required'); return }
     setIsLoading(true)
     setError('')
 
@@ -128,6 +149,7 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
       const formData = new FormData()
       formData.append('name', name.trim())
       formData.append('city', city.trim())
+      formData.append('district', district.trim())
       formData.append('stats', JSON.stringify(stats))
 
       if (isEdit) {
