@@ -191,6 +191,7 @@ export const city = async (req, res) => {
 export const district = async (req, res) => {
   try {
     const districts = await Location.aggregate([
+      { $match: { district: { $exists: true, $nin: [null, ''] } } },
       {
         $group: {
           _id: { $toLower: { $trim: { input: '$district' } } },
