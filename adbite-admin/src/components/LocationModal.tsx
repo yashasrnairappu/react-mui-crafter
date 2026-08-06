@@ -64,17 +64,8 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
 
   const isEdit = !!location
 
-  
   useEffect(() => {
     if (isOpen) {
-      getCities()
-        .then(res => setCities(res.data.cities))
-        .catch(() => {})
-    }
-  }, [isOpen])
-
-  useEffect(() => {
-  if (isOpen) {
       getCities().then(res => setCities(res.data.cities)).catch(() => {})
       getDistricts().then(res => setDistricts(res.data.districts)).catch(() => {})
     }
@@ -131,8 +122,8 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
   )
 
   const districtSuggestions = district.trim()
-  ? districts.filter(d => d.name.toLowerCase().includes(district.toLowerCase()))
-  : districts
+    ? districts.filter(d => d.name.toLowerCase().includes(district.toLowerCase()))
+    : districts
 
   const isNewDistrict = district.trim() !== '' && !districts.some(
     d => d.name.toLowerCase() === district.trim().toLowerCase()
@@ -220,7 +211,7 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
 
               {/* Basic info */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* Name */}
                 <div>
                   <label className="block font-dm text-white/50 text-xs mb-2 uppercase tracking-wide">
@@ -285,6 +276,64 @@ export const LocationModal = ({ isOpen, location, onClose, onSuccess, onError }:
                             >
                               <Plus className="w-3 h-3 shrink-0" />
                               Add new city "{city.trim()}"
+                            </button>
+                          )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+
+                {/* District */}
+                <div>
+                  <label className="block font-dm text-white/50 text-xs mb-2 uppercase tracking-wide">
+                    District *
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={district}
+                      onChange={e => { setDistrict(e.target.value); setShowDistrictSuggestions(true) }}
+                      onFocus={() => setShowDistrictSuggestions(true)}
+                      onBlur={() => setTimeout(() => setShowDistrictSuggestions(false), 150)}
+                      placeholder="Type or add a new district"
+                      className="w-full bg-[#1C1C1C] border border-white/8 hover:border-white/15 focus:border-white/25 text-white placeholder-white/25 font-dm text-sm px-4 py-3 rounded-xl outline-none transition-colors"
+                    />
+
+                    <AnimatePresence>
+                      {showDistrictSuggestions && (districtSuggestions.length > 0 || isNewDistrict) && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -4 }}
+                          transition={{ duration: 0.12 }}
+                          className="absolute top-full left-0 right-0 mt-1 bg-[#1C1C1C] border border-white/10 rounded-xl overflow-hidden z-10 shadow-xl"
+                        >
+                          {/* Existing district matches — use d.name not d */}
+                          {districtSuggestions.map(d => (
+                            <button
+                              key={d.name}
+                              type="button"
+                              onMouseDown={() => { setDistrict(d.name); setShowDistrictSuggestions(false) }}
+                              className="w-full text-left px-4 py-2.5 font-dm text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-2"
+                            >
+                              <MapPin className="w-3 h-3 text-white/30 shrink-0" />
+                              <span className="flex-1">{d.name}</span>
+                              <span className="font-dm text-xs text-white/25">
+                                {d.count} {d.count === 1 ? 'location' : 'locations'}
+                              </span>
+                            </button>
+                          ))}
+
+                          {/* New district */}
+                          {isNewDistrict && (
+                            <button
+                              type="button"
+                              onMouseDown={() => setShowDistrictSuggestions(false)}
+                              className="w-full text-left px-4 py-2.5 font-dm text-sm text-[#E8181E] hover:bg-white/5 transition-colors flex items-center gap-2 border-t border-white/8"
+                            >
+                              <Plus className="w-3 h-3 shrink-0" />
+                              Add new district "{district.trim()}"
                             </button>
                           )}
                         </motion.div>
