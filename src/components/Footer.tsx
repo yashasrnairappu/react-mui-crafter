@@ -43,7 +43,7 @@ const Footer = () => {
               {[
                 ["Home", "/"],
                 ["About", "#about"],
-                ["Services", "#services"],
+                ["Location", "#location"],
                 ["Contact", "#contact"],
               ].map(([name, link]) => (
                 <li key={name}>
@@ -58,40 +58,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
-                <div>
-          <h3 className="text-white text-lg font-semibold mb-5">
-            Services
-          </h3>
-
-          <ul className="space-y-3">
-            {[
-              "Adbite Screens",
-              "Adbite Wheels",
-              "Adbite Properties",
-              "Web Solutions",
-              "Ad Shoot",
-              "Digital Marketing",
-            ].map((service) => {
-              const message = encodeURIComponent(
-                `Hi, I'm interested in your ${service} service. Please share more details.`
-              );
-
-              return (
-                <li key={service}>
-                  <a
-                    href={`https://wa.me/917907262988?text=${message}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/60 hover:text-[#E8181E] transition-all duration-300 text-sm"
-                  >
-                    {service}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+          
 
           {/* Contact */}
           <div>
