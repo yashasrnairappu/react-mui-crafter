@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import logoP from "@/assets/adbitelogo.jpeg";
-import { ArrowBigUp } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -9,7 +8,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
 
         {/* Main Footer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 pb-10">
 
           {/* Brand */}
           <div className="space-y-5">
@@ -32,7 +31,7 @@ const Footer = () => {
               branding solutions that help businesses stand out.
             </p>
           </div>
- 
+
           {/* Quick Links */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-5">
@@ -58,8 +57,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          
-
           {/* Contact */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-5">
@@ -72,16 +69,17 @@ const Footer = () => {
               <p>+91 79072 62988</p>
 
               <p className="leading-relaxed">
-                Thiruvalla Rd Mallapally
+                Thiruvalla Rd, Mallappally
                 <br />
                 Pathanamthitta, Kerala
               </p>
             </div>
           </div>
+
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-white/10 pt-6 flex flex-row items-center justify-between gap-5">
+        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-5">
 
           <p className="text-sm text-white/40 text-center md:text-left">
             © 2026 Adbite. All rights reserved.
@@ -90,7 +88,7 @@ const Footer = () => {
           <Button
             onClick={() =>
               window.open(
-                "https://wa.me/7907262988?text=Hi%2C%20I%27m%20interested%20in%20your%20services",
+                "https://wa.me/917907262988?text=Hi%2C%20I%27m%20interested%20in%20your%20services",
                 "_blank"
               )
             }
@@ -99,6 +97,7 @@ const Footer = () => {
             Contact Now
           </Button>
         </div>
+
       </div>
     </footer>
   );
